@@ -1,69 +1,27 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import api from './api'
+import { useState } from 'react';
+import Login from './Login';
+import Registro from './Registro';
+import './App.css';
 
 function App() {
-  const [usuario, setUsuario] = useState({
-    username : "",
-    nombre : "",
-    email : "",
-    password : ""
-  })
-  const handleSubmmit = async(evento) => {
-    evento.preventDefault()
-    console.log(usuario)
-    try {
-      const respuesta = await api.post("/auth/registrar", usuario )
-      console.log(respuesta)
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  const [mostrarLogin, setMostrarLogin] = useState(true);
 
-  const handleChange = (evento) => {
-    setUsuario({
-      ...usuario, 
-      [evento.target.name] : evento.target.value
-    })
-  }
+  const toggleFormulario = () => {
+    setMostrarLogin(!mostrarLogin);
+  };
 
   return (
-    <form 
-    onSubmit={handleSubmmit}
-    
-    > 
-      <input 
-      type='text' 
-      name='username' 
-      placeholder='ingrese usuario'
-      onChange={handleChange} 
-      ></input>
-
-      <input 
-      type='text' 
-      name='nombre' 
-      placeholder='ingrese nombre'
-      onChange={handleChange} 
-      ></input>
-      <input 
-      type='email' 
-      name='email' 
-      placeholder='ingrese usuario'
-      onChange={handleChange} 
-      ></input>
-      <input 
-      type='password' 
-      name='password' 
-      placeholder='ingrese password'
-      onChange={handleChange} 
-      ></input>
-
-      <input type='submit' value={"enviar"}/>
-    </form>
-  
-  )
+    <div className="container">
+      {mostrarLogin ? <Login /> : <Registro />}
+      <div className="toggle-form">
+        {mostrarLogin ? (
+          <p>No tienes cuenta? <span onClick={toggleFormulario}>Regístrate</span></p>
+        ) : (
+          <p>Ya tienes cuenta? <span onClick={toggleFormulario}>Iniciar Sesión</span></p>
+        )}
+      </div>
+    </div>
+  );
 }
 
-export default App
+export default App;
