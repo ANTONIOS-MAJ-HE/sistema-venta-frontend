@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Login from './Login';
 import Registro from './Registro';
 import './App.css';
+import Publicaciones from './Publicaciones';
 
 function App() {
   const [mostrarLogin, setMostrarLogin] = useState(true);
@@ -21,6 +22,7 @@ function App() {
         )}
       </div>
     </div>
+    
   );
 }
 

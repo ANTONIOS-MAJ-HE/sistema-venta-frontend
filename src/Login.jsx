@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import api from './api';
+import Publicaicones from './Publicaciones';
 import './App.css';
 
 function Login() {
@@ -13,11 +14,15 @@ function Login() {
     console.log(usuario);
     try {
       const respuesta = await api.post('/auth/iniciarSesion', usuario);
+      const { tokenDeAcceso } = respuesta.data;
+      localStorage.setItem('token', tokenDeAcceso); // Guardar el token en el almacenamiento local
       console.log(respuesta);
+      // Aquí puedes redirigir al usuario a la página de publicaciones
     } catch (error) {
       console.log(error);
     }
   };
+  
 
   const handleChange = (evento) => {
     setUsuario({
