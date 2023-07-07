@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import api from './api';
+import api from '../api';
 import Publicaicones from './Publicaciones';
-import './App.css';
+import '../App.css';
 
 function Login() {
   const [usuario, setUsuario] = useState({

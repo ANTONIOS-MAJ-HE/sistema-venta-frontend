@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import api from './api';
-import './App.css';
+import api from '../api';
+import '../App.css';
 
 function Registro() {
   const [usuario, setUsuario] = useState({
